@@ -31,7 +31,7 @@ describe("Gilded Rose", function() {
       expect(items[0].quality).toEqual(0);
     });
 
-    xit("quality of an item is never > 50", function() {
+    it("quality of an item is never > 50", function() {
       const gildedRose = new Shop([ new Item("foo", 10, 80) ]);
       const items = gildedRose.updateQuality();
       expect(items[0].quality).toEqual(50);

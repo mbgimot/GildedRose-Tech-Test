@@ -36,3 +36,7 @@ Personal Code Review
 * Scope to improve case statements. At the moment it relies on a identical match of the string used in the TextTest
 
 * Would've preferred using London TDD (mocking items for example) to explicitly test for dependency injections between classes
+
+* Consider Mixins rather than classes for quality and date methods
+
+* Consider making each item it's own class
