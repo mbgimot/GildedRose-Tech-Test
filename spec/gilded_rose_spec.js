@@ -51,7 +51,7 @@ describe("Gilded Rose", function() {
       expect(items[0].sellIn).toEqual(1);
     });
 
-    it("quality decreases by 1 per day", function() {
+    it("quality decreases by 2 per day", function() {
       const gildedRose = new Shop([ new Item("Conjured", 2, 4) ]);
       const items = gildedRose.updateQuality();
       expect(items[0].quality).toEqual(2);
@@ -75,6 +75,12 @@ describe("Gilded Rose", function() {
       const gildedRose = new Shop([ new Item("Aged Brie", 2, 0) ]);
       const items = gildedRose.updateQuality();
       expect(items[0].quality).toEqual(1);
+    });
+
+    it("quality doubles once sell by date is reached", function() {
+      const gildedRose = new Shop([ new Item("Aged Brie", 0, 0) ]);
+      const items = gildedRose.updateQuality();
+      expect(items[0].quality).toEqual(2);
     });
 
     it("quality is never > 50", function() {
