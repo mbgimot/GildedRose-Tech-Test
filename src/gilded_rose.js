@@ -1,21 +1,20 @@
 const DAY = 1;
 
-class Item {
-  constructor(name, sellIn, quality){
-    this.name = name;
-    this.sellIn = sellIn;
-    this.quality = quality;
-  }
-}
-
 class Shop {
-
   constructor(items=[]){
     this.items = items;
   }
 
   updateQuality() {
     for (var i = 0; i < this.items.length; i++) {
+
+      switch(this.items[i].name) {
+        case 'Sulfuras, Hand of Ragnaros':
+          break;
+
+        default:
+          this.adjustSellByDate(i);
+      }
 
       switch(this.items[i].name) {
 
@@ -26,7 +25,6 @@ class Shop {
           else {
             this.adjustQuality(i, 1);
           }
-          this.adjustSellByDate(i);
           break;
 
         case 'Sulfuras, Hand of Ragnaros':
@@ -34,25 +32,20 @@ class Shop {
 
         case 'Backstage passes to a TAFKAL80ETC concert':
           if (this.sellByDate(i)) {
-            this.adjustSellByDate(i);
             this.items[i].quality = 0;
           }
           else if (this.sellCheck(i,6)) {
-            this.adjustSellByDate(i);
             this.adjustQuality(i, 3);
           }
           else if (this.sellCheck(i,11)) {
-            this.adjustSellByDate(i);
             this.adjustQuality(i, 2);
           }
           else {
-            this.adjustSellByDate(i);
             this.adjustQuality(i, 1);
           }
           break;
 
         case 'Conjured':
-          this.adjustSellByDate(i);
           this.adjustQuality(i,-2);
           break;
 
@@ -63,10 +56,9 @@ class Shop {
           else {
             this.adjustQuality(i,-1);
           }
-          this.adjustSellByDate(i);
           break;
+        }
       }
-    }
     return this.items;
   }
 
@@ -84,7 +76,15 @@ class Shop {
   }
 
   adjustQuality(i, change) {
-    this.items[i].quality += change;
+      if ((this.items[i].quality + change) < 0 ) {
+        this.items[i].quality = 0;
+      }
+      else if((this.items[i].quality + change) > 50 ) {
+        this.items[i].quality = 50;
+      }
+      else {
+      this.items[i].quality += change;
+    }
   }
 
   adjustSellByDate(i) {
@@ -93,8 +93,5 @@ class Shop {
 
   sellByDate(i) {
     return this.items[i].sellIn <= 0;
-  }
-
-  qualityNotNegative(i) {
   }
 }
