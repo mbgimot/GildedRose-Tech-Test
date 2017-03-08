@@ -38,21 +38,21 @@ describe("Gilded Rose", function() {
     });
   });
 
-  describe('Conjured', function(){
-    it("should Conjured", function() {
-      const gildedRose = new Shop([ new Item("Conjured", 1, 1) ]);
+  describe('Conjured Mana Cake', function(){
+    it("should Conjured Mana Cake", function() {
+      const gildedRose = new Shop([ new Item("Conjured Mana Cake", 1, 1) ]);
       const items = gildedRose.updateQuality();
-      expect(items[0].name).toEqual("Conjured");
+      expect(items[0].name).toEqual("Conjured Mana Cake");
     });
 
     it("sellin decreases by 1 per day", function() {
-      const gildedRose = new Shop([ new Item("Conjured", 2, 4) ]);
+      const gildedRose = new Shop([ new Item("Conjured Mana Cake", 2, 4) ]);
       const items = gildedRose.updateQuality();
       expect(items[0].sellIn).toEqual(1);
     });
 
     it("quality decreases by 2 per day", function() {
-      const gildedRose = new Shop([ new Item("Conjured", 2, 4) ]);
+      const gildedRose = new Shop([ new Item("Conjured Mana Cake", 2, 4) ]);
       const items = gildedRose.updateQuality();
       expect(items[0].quality).toEqual(2);
     });
